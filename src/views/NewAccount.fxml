@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="root2" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAccountController">
+    <children>
+        <GridPane layoutX="10.0" layoutY="66.0" prefHeight="273.0" prefWidth="591.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="21.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="110.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="67.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="44.0" minHeight="1.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label prefHeight="26.0" prefWidth="104.0" text="Email:*" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label text="Password:*" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label prefHeight="17.0" prefWidth="121.0" text="Confirm Password*" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="email" promptText="email" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Button mnemonicParsing="false" onMouseClicked="#createAccount" prefHeight="34.0" prefWidth="103.0" text="Register" underline="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+                <PasswordField fx:id="password" promptText="password" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <PasswordField fx:id="password2" promptText="password" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Label text="First Name:*">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="firstName" prefHeight="25.0" prefWidth="134.0" promptText="first name" GridPane.columnIndex="1" />
+                <Label text="Last Name:*" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label prefHeight="34.0" prefWidth="92.0" text="DOB:*&#10;(01/01/2000)" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label text="Gender:*&#10;(Male or Female)" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="lastName" promptText="last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="dob" promptText="date of birth" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <ChoiceBox fx:id="gender" prefHeight="25.0" prefWidth="129.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="Username:*" GridPane.columnIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="userName" promptText="username" GridPane.columnIndex="4" />
+                <Label text="SSN:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label prefHeight="35.0" prefWidth="129.0" text="Phone Number&#10;(X-XXX-XXX-XXXX)&#10;&#10;" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <Label text="Profile Photo:" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="ssn" promptText="ssn" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="phoneNumber" promptText="country-area-number" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Button mnemonicParsing="false" onMouseClicked="#uploadProfilePic" prefHeight="31.0" prefWidth="67.0" text="Browse" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="9.0" />
+                    </font></Button>
+                <TextField fx:id="profilePic" promptText="path of picture" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+        <Label layoutX="256.0" layoutY="18.0" styleClass="dark-blue" text="Create New Account">
+            <font>
+                <Font name="Century Gothic Bold" size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="8.0" layoutY="355.0" text="Fields marked with an asterisk (*) are required to register">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label layoutX="8.0" layoutY="375.0" text="Password must contain at least 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character (@#$%^&amp;+=)">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label fx:id="failSamePassword" layoutX="43.0" layoutY="399.0" text="Cannot create account - password and confirm password are not the same" textFill="#f20606" visible="false">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="failFieldsNotComplete" layoutX="43.0" layoutY="417.0" text="Cannot create account - required fields are not completed" textFill="#eb0202" visible="false">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="failEmailFormat" layoutX="43.0" layoutY="435.0" text="Cannot create account - incorrect email format" textFill="#f50505" visible="false">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="failPasswordFormat" layoutX="43.0" layoutY="453.0" text="Cannot create account - password does not meet requirements" textFill="#f20303" visible="false">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="failUsernameExists" layoutX="43.0" layoutY="471.0" text="Cannot create account - username already exists" textFill="#f50303" visible="false">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+    </children>
+    <stylesheets>
+        <URL value="@appStyle2.css" />
+    </stylesheets>
+</Pane>

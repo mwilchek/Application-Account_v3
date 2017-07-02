@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.19597989949748743" maxHeight="-Infinity"
+           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0"
+           prefWidth="600.0" xmlns="http://javafx.com/javafx/null" fx:controller="controller.RestaurantListController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
+                <TextField layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="542.0" fx:id="searchKey"
+                           onKeyPressed="#handleEnterPressed"/>
+                <Label layoutX="556.0" layoutY="21.0" prefHeight="31.0" prefWidth="28.0" text="Label"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="14.0" layoutY="14.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
+                <TableView fx:id="restaurantTable" prefHeight="400.0" prefWidth="916.0">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
+                        <TableColumn fx:id="streetAddressColumn" prefWidth="75.0" text="Street Address"/>
+                        <TableColumn fx:id="cityColumn" prefWidth="75.0" text="City"/>
+                        <TableColumn fx:id="stateColumn" prefWidth="75.0" text="State"/>
+                        <TableColumn fx:id="zipColumn" prefWidth="75.0" text="Zip"/>
+                        <TableColumn fx:id="latitudeColumn" prefWidth="75.0" text="Latitude"/>
+                        <TableColumn fx:id="longitudeColumn" prefWidth="75.0" text="Longitude"/>
+                        <TableColumn fx:id="phoneNumColumn" prefWidth="120.0" text="Phone Number"/>
+                        <TableColumn fx:id="photoColumn" prefWidth="30.0" text="Photo"/>
+                    </columns>
+                </TableView>
+            </children>
+            <effect>
+                <DropShadow/>
+            </effect>
+        </AnchorPane>
+    </items>
+</SplitPane>

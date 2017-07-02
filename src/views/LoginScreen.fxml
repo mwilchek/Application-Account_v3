@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="726.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+            <children>
+                <PasswordField fx:id="password" layoutX="289.0" layoutY="112.0" promptText="password" />
+                <TextField fx:id="userName" layoutX="289.0" layoutY="79.0" promptText="user name" />
+                <TextField alignment="CENTER_RIGHT" editable="false" layoutX="206.0" layoutY="78.0" prefHeight="27.0" prefWidth="71.0" text="Username:" />
+                <TextField alignment="CENTER_RIGHT" editable="false" layoutX="206.0" layoutY="112.0" prefHeight="27.0" prefWidth="71.0" text="Password:" />
+                <Button layoutX="221.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#openRegister" prefHeight="26.0" prefWidth="198.0" styleClass="lion" text="Register New Account" textAlignment="CENTER" underline="true">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button layoutX="474.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#authenticate" prefHeight="26.0" prefWidth="95.0" styleClass="lion" text="Login" underline="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            <Label fx:id="failAuthentication" layoutX="277.0" layoutY="207.0" prefHeight="17.0" prefWidth="227.0" text="Authentication Failed - Incorrect Credentials or Create New Account" textFill="#eb0303" visible="false">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font></Label>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="151.0" styleClass="dark-blue" text="Application Login" textAlignment="CENTER" />
+      <Label layoutX="271.0" layoutY="273.0" opacity="0.71" prefHeight="26.0" prefWidth="455.0" styleClass="windows7" text="Please sign in to use this application or register a new account..." />
+      <Button layoutX="474.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#mongoAuthenticate" prefHeight="26.0" prefWidth="149.0" styleClass="lion" text="Mongo Login" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+            </children>
+            <stylesheets>
+                <URL value="@appStyle.css" />
+            </stylesheets>
+        </AnchorPane>
