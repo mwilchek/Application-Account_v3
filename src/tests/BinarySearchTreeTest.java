@@ -28,13 +28,12 @@ public class BinarySearchTreeTest {
             System.out.println("\nChoose a BST method to test by selecting the corresponding number: ");
             System.out.println("isEmpty() - 1");
             System.out.println("size() - 2");
-            System.out.println("size2() - 3");
-            System.out.println("contains (string) - 4");
-            System.out.println("remove (string) - 5");
-            System.out.println("get (string) - 6");
-            System.out.println("add (string) - 7");
-            System.out.println("print (traversal order) - 8");
-            System.out.println("stop Testing - 9 \n");
+            System.out.println("contains (string) - 3");
+            System.out.println("remove (string) - 4");
+            System.out.println("get (string) - 5");
+            System.out.println("add (string) - 6");
+            System.out.println("print (traversal order) - 7");
+            System.out.println("stop Testing - 8 \n");
             System.out.print("Enter choice: ");
 
             if (kb.hasNextInt())
@@ -50,9 +49,7 @@ public class BinarySearchTreeTest {
 
             if (method4BST == 1)
                 System.out.println("isEmpty returns " + tree.isEmpty());
-            if (method4BST == 2)
-                System.out.println("size returns " + tree.size());
-            if (method4BST == 3) {
+            if (method4BST == 2) {
                 try {
                     System.out.println("size2 returns " + tree.size2());
                 } catch (Underflow e) {
@@ -60,31 +57,31 @@ public class BinarySearchTreeTest {
                     e.printStackTrace();
                 }
             }
-            if (method4BST == 4) {
+            if (method4BST == 3) {
                 System.out.print("Enter a string to search for: ");
                 target = kb.nextLine();
                 System.out.println("contains(" + target + ") returns: " + tree.contains(target));
             }
 
-            if (method4BST == 5) {
+            if (method4BST == 4) {
                 System.out.print("Enter a string to remove: ");
                 target = kb.nextLine();
                 System.out.println("remove(" + target + ") returns " + tree.remove(target));
             }
 
-            if (method4BST == 6) {
+            if (method4BST == 5) {
                 System.out.print("Enter a string to get: ");
                 target = kb.nextLine();
                 System.out.println("get(" + target + ") returns " + tree.get(target));
             }
 
-            if (method4BST == 7) {
+            if (method4BST == 6) {
                 System.out.print("Enter a string to add: ");
                 element = kb.nextLine();
                 tree.add(element);
             }
 
-            if (method4BST == 8) {
+            if (method4BST == 7) {
                 System.out.println("Choose a traversal order to test by selecting the corresponding number:");
                 System.out.println("1: Pre-order");
                 System.out.println("2: In-order");
@@ -132,7 +129,7 @@ public class BinarySearchTreeTest {
                 }
             }
 
-            if (method4BST == 9) {
+            if (method4BST == 8) {
                 continueTest = false;
             }
 
