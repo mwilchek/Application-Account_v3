@@ -55,6 +55,7 @@ public class ReadExcel {
             }
         }
 
+        sheetData.remove(0); //remove header row
         return sheetData; // Which is a List
     }
 

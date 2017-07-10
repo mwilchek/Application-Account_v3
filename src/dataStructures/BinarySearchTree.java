@@ -1,5 +1,6 @@
 package dataStructures;
 
+import Core.Restaurant;
 import exceptions.Underflow;
 import java.util.LinkedList;
 
@@ -17,7 +18,7 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         root = null;
     }
 
-    /** Returns true if this BST is empty; otherwise, returns false */
+    /** Returns true if the BST is empty; otherwise, returns false */
     public boolean isEmpty() {
         return (root == null);
     }
@@ -30,12 +31,12 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
             return recSize(tree.getLeft()) + recSize(tree.getRight()) + 1;
     }
 
-    /** Returns the number of elements in this BST */
+    /** Returns the number of elements in the BST */
     public int size() {
         return recSize(root);
     }
 
-    /** Returns the number of elements in this BST */
+    /** Returns the number of elements in the BST */
     public int size2() throws Underflow {
         int count = 0;
         if (root != null) {
@@ -55,7 +56,7 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         return count;
     }
 
-    /** Returns true if tree contains an element e such that e.compareTo(element) == 0; otherwise, returns false*/
+    /** Returns true if tree contains an element data such that data.compareTo(element) == 0; otherwise, returns false*/
     private boolean recContains(data element, BSTNode<data> tree) {
         if (tree == null)
             return false;       // element is not found
@@ -67,12 +68,12 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
             return true;        // element is found
     }
 
-    /** Returns true if this BST contains an element e such that e.compareTo(element) == 0; otherwise, returns false */
+    /** Returns true if the BST contains an element data such that data.compareTo(element) == 0; otherwise, returns false */
     public boolean contains(data element) {
         return recContains(element, root);
     }
 
-    /** Returns an element e from tree such that e.compareTo(element) == 0 if no such element exists, returns null */
+    /** Returns an element data from tree such that data.compareTo(element) == 0 if no such element exists, returns null */
     private data recGet(data element, BSTNode<data> tree) {
         if (tree == null)
             return null;             // element is not found
@@ -84,13 +85,13 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
             return tree.getInfo();  // element is found
     }
 
-    /** Returns an element e from this BST such that e.compareTo(element) == 0;
+    /** Returns an element data from the BST such that data.compareTo(element) == 0;
      * if no such element exists, returns null*/
     public data get(data element) {
         return recGet(element, root);
     }
 
-    /** Adds element to tree; tree retains its BST property */
+    /** Adds an element to the tree; tree retains its BST property */
     private BSTNode<data> recAdd(data element, BSTNode<data> tree) {
         if (tree == null)
             // Addition place found
@@ -102,19 +103,19 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         return tree;
     }
 
-    /** Adds element to this BST. The tree retains its BST property */
+    /** Adds an element to the BST. The tree retains its BST property */
     public void add(data element) {
         root = recAdd(element, root);
     }
 
-    /**Returns the information held in the rightmost node in tree */
+    /**Returns the information held in the rightmost node in the tree */
     private data getPredecessor(BSTNode<data> tree) {
         while (tree.getRight() != null)
             tree = tree.getRight();
         return tree.getInfo();
     }
 
-    /** Removes the information at the node referenced by tree. The user's data in the node referenced by tree is no
+    /** Removes the information at the node referenced by the tree. The user's data in the node referenced by tree is no
      * longer in the tree.  If tree is a leaf node or has only a non-null child pointer, the node pointed to by tree
      * is removed; otherwise, the user's data is replaced by its logical predecessor and the predecessor's
      * node is removed */
@@ -133,7 +134,7 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         }
     }
 
-    /** Removes an element e from tree such that e.compareTo(element) == 0, and returns true; if no such element
+    /** Removes an element data from the tree such that data.compareTo(element) == 0, and returns true; if no such element
      * exists, returns false*/
     private BSTNode<data> recRemove(data element, BSTNode<data> tree) {
         if (tree == null)
@@ -151,12 +152,12 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
 
     /** Removes an element e from this BST such that e.compareTo(element) == 0 and returns true; if no such element
      * exists, returns false.*/
-    public boolean remove(data element) {
+    public boolean remove(data element) throws Underflow {
         root = recRemove(element, root);
         return found;
     }
 
-    /** Initializes inOrderQueue with tree elements in inOrder order */
+    /** Initializes inOrderQueue with the tree elements in inOrder order */
     private void inOrder(BSTNode<data> tree) {
         if (tree != null) {
             inOrder(tree.getLeft());
@@ -165,7 +166,7 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         }
     }
 
-    /**Initializes preOrderQueue with tree elements in preOrder order */
+    /**Initializes preOrderQueue with the tree elements in preOrder order */
     private void preOrder(BSTNode<data> tree) {
         if (tree != null) {
             preOrderQueue.add(tree.getInfo());
@@ -174,7 +175,7 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
         }
     }
 
-    /** Initializes postOrderQueue with tree elements in postOrder order */
+    /** Initializes postOrderQueue with the tree elements in postOrder order */
     private void postOrder(BSTNode<data> tree) {
         if (tree != null) {
             postOrder(tree.getLeft());
@@ -213,4 +214,5 @@ public class BinarySearchTree<data extends Comparable<data>> implements BSTInter
             return postOrderQueue.remove();
         else return null;
     }
+
 }

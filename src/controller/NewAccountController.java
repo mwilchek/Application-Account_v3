@@ -3,10 +3,7 @@ package controller;
 import Core.AccountList;
 import Core.AcctDataTracker;
 import Core.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,10 +17,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static mongoDB.MongoDB.addUserToMongoDB;
 
 public class NewAccountController {
-    ObservableList<String> genderList = FXCollections.observableArrayList("Male", "Female");
 
     @FXML
     TextField userName;
@@ -32,25 +27,10 @@ public class NewAccountController {
     @FXML
     PasswordField password2;
     @FXML
-    TextField email;
-    @FXML
-    TextField firstName;
-    @FXML
-    TextField lastName;
-    @FXML
-    TextField dob;
-    @FXML
-    ChoiceBox gender;
-    @FXML
-    TextField ssn;
-    @FXML
-    TextField phoneNumber;
-    @FXML
     TextField profilePic;
+    //profilePic is Restaurant List File
     @FXML
     Label failSamePassword;
-    @FXML
-    Label failEmailFormat;
     @FXML
     Label failFieldsNotComplete;
     @FXML
@@ -58,24 +38,13 @@ public class NewAccountController {
     @FXML
     Label failUsernameExists;
 
-    @FXML
-    private void initialize() {
-        gender.setItems(genderList);
-    }
-
-    /**
-     * Create New User Account
-     */
+    /**Create New User Account */
     public void createAccount() throws IOException {
 
         /** Validate Info */
-        if (firstName.getText().equals("") || lastName.getText().equals("") || dob.getText().equals("")
-                || gender.getSelectionModel().getSelectedItem().toString().equals("") || userName.getText().equals("") || password.getText().equals("")) {
+        if (userName.getText().equals("") || password.getText().equals("") || password2.getText().equals("")
+                || profilePic.getText().equals("")) {
             failFieldsNotComplete.setVisible(true);
-        }
-
-        if (!email.getText().matches("\\w+@\\w+\\.\\w+")) {
-            failEmailFormat.setVisible(true);
         }
 
         if (!password.getText().equals(password2.getText())) {
@@ -90,18 +59,16 @@ public class NewAccountController {
             failUsernameExists.setVisible(true);
         }
 
-
-        if (!firstName.getText().equals("") && !lastName.getText().equals("") && !dob.getText().equals("")
-                && !gender.getSelectionModel().getSelectedItem().equals(null) && !userName.getText().equals("") && !password.getText().equals("")
+        if (!userName.getText().equals("") && !password.getText().equals("")
                 && password.getText().equals(password2.getText())
                 && validatePassword(password.getText())
-                && email.getText().matches("\\w+@\\w+\\.\\w+")
+                && !profilePic.getText().equals("")
                 && !(AccountList.getUsers().contains(userName.getText()))
                 )
 
         /**Create Profile Page and Add New User to local .dat file and MongoDB */ {
             new NewAccountCreated();
-            User u = new User(firstName.getText(), lastName.getText(), dob.getText(), gender.getSelectionModel().getSelectedItem().toString(), userName.getText(), email.getText(), phoneNumber.getText(), password.getText(), profilePic.getText());
+            User u = new User(userName.getText(), password.getText(), profilePic.getText());
 
             //Adds new user to IndexedList and updates .dat file
             try {
@@ -113,8 +80,6 @@ public class NewAccountController {
             //Adds user to AccountList .dat file
             //AccountList.getUsers().add(u);
 
-            //Adds user to Mongo Database
-            addUserToMongoDB(u);
         }
 
         //Update local .dat file for AccountList
@@ -185,6 +150,19 @@ public class NewAccountController {
         File selectedFile = fileChooser.showOpenDialog(RegisterDriver.getRegisterStage());
         System.out.println(selectedFile.getPath());
         profilePic.appendText(selectedFile.getPath());
+    }
+
+    public void createFileChooser() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Restaurant List File");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Text Files", "*.txt"),
+                new ExtensionFilter("All Files", "*.*"));
+        File selectedFile = fileChooser.showOpenDialog(RegisterDriver.getRegisterStage());
+        profilePic.appendText(selectedFile.getPath());
+        /*   if (selectedFile != null) {
+            mainStage.display(selectedFile);
+        }*/
     }
 }
 

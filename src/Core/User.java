@@ -17,9 +17,10 @@ public class User extends Person implements Serializable, Comparable {
 
     }
 
-    public User(String userName, String password) {
+    public User(String userName, String password, String profilePic) {
         this.userName = userName;
         this.password = password;
+        this.profilePic = profilePic;
     }
 
     public User(String userName, String email, String phone, String password, String profilePic) {

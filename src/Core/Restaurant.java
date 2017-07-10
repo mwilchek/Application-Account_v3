@@ -14,6 +14,7 @@ public class Restaurant implements Comparable<Restaurant>, Serializable {
     private StringProperty longitude;
     private StringProperty phoneNum;
     private StringProperty photo;
+    private String file;
 
     /**Default restaurant properties */
     public Restaurant() {
@@ -26,6 +27,11 @@ public class Restaurant implements Comparable<Restaurant>, Serializable {
         this.longitude = new SimpleStringProperty("");
         this.phoneNum = new SimpleStringProperty("");
         this.photo = new SimpleStringProperty("");
+    }
+
+    /**Sets restaurant to a reference to a file object */
+    public Restaurant(String file){
+        this.file = file;
     }
 
     /**Restaurant properties defaulted, but with specific location recorded */
@@ -57,6 +63,11 @@ public class Restaurant implements Comparable<Restaurant>, Serializable {
     /**Get restaurant name */
     public String getName() {
         return name.get();
+    }
+
+    /**Get restaurant file */
+    public String getDataFile(){
+        return file;
     }
 
     /**Set restaurant name */

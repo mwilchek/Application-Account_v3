@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import mongoDB.MongoDB;
 import views.RegisterDriver;
 import views.RestaurantListDriver;
 
@@ -31,32 +30,7 @@ public class LoginController {
         new RegisterDriver();
     }
 
-    /**
-     * Check login credentials from local MongoDB
-     */
-    public void mongoAuthenticate() throws IOException {
-        if (MongoDB.doesUsernameExist(userName.getText())) {
-            User user = MongoDB.getUser(userName.getText());
-            System.out.println("MongoDB Authentication Check:");
-            System.out.println(user.toString());
-            if (password.getText().equals(user.getEmail())) { // For some odd reason user.getPassword return the
-                                                              // phone number and user.getEmail returns the password
-                System.out.println("Account information accepted.");
-                //profile = new ProfileInfo(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(), user.getGender(), user.getDob(), user.getPhoto());
-                //new ProfileDriver();
-                restaurant = new Restaurant();
-                new RestaurantListDriver();
-                System.out.println("welcome" + " " + userName.getText());
-
-            } else {
-                failAuthentication.setVisible(true);
-            }
-        }
-    }
-
-    /**
-     * Authentication attempt with AccountIndexedList
-     */
+    /**Authentication attempt with AccountIndexedList */
     public void authenticate() throws Exception {
         IndexedList<User> list = readIndexedAccounts();
         AccountIndexedList.setUsers(list);
@@ -65,8 +39,7 @@ public class LoginController {
             User accountFound = (User) AccountIndexedList.getUsers().get(i);
             if (userName.getText().equals(accountFound.getUserName()) && password.getText().equals(accountFound.getPassword())) {
                 System.out.println("Account information accepted.");
-                //profile = new ProfileInfo(accountFound.getFirstName(), accountFound.getLastName(), accountFound.getEmail(), accountFound.getPhone(), accountFound.getGender(), accountFound.getDob(), accountFound.getPhoto());
-                //new ProfileDriver();
+                restaurant = new Restaurant(accountFound.getPhoto()); //gets data file list of restaurants
                 new RestaurantListDriver();
                 System.out.println("welcome" + " " + userName.getText());
                 login = true;
@@ -100,5 +73,4 @@ public class LoginController {
      }
      }
      */
-
 }

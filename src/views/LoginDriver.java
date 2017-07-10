@@ -12,10 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mongoDB.MongoDB;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static Core.AcctDataTracker.readIndexedAccounts;
 
@@ -27,7 +25,6 @@ public class LoginDriver extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MongoDB.setMongoConnection();
         loadUserAccounts();
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         primaryStage.setTitle("Application Login");

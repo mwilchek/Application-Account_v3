@@ -8,11 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
+import static controller.LoginController.restaurant;
 
 public class RestaurantListDriver {
     private static Stage restaurantListStage = new Stage();
@@ -30,15 +32,11 @@ public class RestaurantListDriver {
     private BorderPane rootLayout;
 
     public RestaurantListDriver() throws IOException {
-
         loadRestaurant();
         initRootLayout();
         showRestaurantData();
-        // Parent restaurantListView = FXMLLoader.load(getClass().getResource("RestaurantListInfo.fxml"));
+
         restaurantListStage.setTitle("Restaurant List Page");
-        // Scene restaurantListScene = new Scene(restaurantListView, 575, 575);
-        // restaurantListStage.setScene(restaurantListScene);
-        // restaurantListStage.show();
     }
 
     public BinarySearchTree<Restaurant> getRestaurantBSTree() {
@@ -55,19 +53,23 @@ public class RestaurantListDriver {
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             restaurantListStage.setScene(scene);
+            restaurantListStage.setResizable(true);
+
             restaurantListStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**Loads the Restaurant Data File recorded in the user account as a BST */
     public void loadRestaurant() {
         restaurantBSTree = new BinarySearchTree<Restaurant>();
         List restaurantList = null;
+
         try {
-            restaurantList = ReadExcel.ReadExcel("RestaurantList.xls");
+            restaurantList = ReadExcel.ReadExcel(restaurant.getDataFile());
         } catch (Exception e) {
-            System.err.println("Problem reading RestaurantList.xls file");
+            System.err.println("Problem reading " + restaurant.getDataFile() + " file.");
             e.printStackTrace();
         }
         //ReadExcelFile.showExcelData(restaurantList);
@@ -88,17 +90,23 @@ public class RestaurantListDriver {
             restaurantBSTree.add(restaurant);
             restaurantData.add(restaurant);
         }
+        restaurantBSTree.reset(BinarySearchTree.INORDER); //Set the order of the BST as Inorder
     }
 
     public void showRestaurantData() {
         try {
             // Load restaurant overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(RestaurantListDriver.class.getResource("RestaurantListInfo.fxml"));
+            loader.setLocation(RestaurantListDriver.class.getResource("RestaurantInfo.fxml"));
             SplitPane restaurantOverview = loader.load();
 
             // Set restaurant overview into the center of root layout.
             rootLayout.setCenter(restaurantOverview);
+            ScrollPane pane = new ScrollPane();
+            pane.prefWidthProperty().bind(restaurantOverview.widthProperty());
+            pane.prefHeightProperty().bind(restaurantOverview.heightProperty());
+            pane.setContent(restaurantOverview);
+            pane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
             // Give the controller access to the main app.
             RestaurantListController controller = loader.getController();
@@ -108,7 +116,7 @@ public class RestaurantListDriver {
         }
     }
 
-    /** Returns the data as an observable list of Hospitals. @return */
+    /** Returns the data as an observable list of Restaurants. @return */
     public ObservableList<Restaurant> getRestaurantData() {
         return restaurantData;
     }

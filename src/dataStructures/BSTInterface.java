@@ -1,5 +1,7 @@
 package dataStructures;
 
+import exceptions.Underflow;
+
 /**
  * Interface for a class that implements a binary search tree (BST).
  * The trees are unbounded and allow duplicate elements, but do not allow null elements. As a general
@@ -25,7 +27,7 @@ public interface BSTInterface<data extends Comparable<data>> {
 
     /**Removes an element data from the BST such that data.compareTo(element) == 0
      * and returns true; if no such element exists, returns false */
-    boolean remove(data element);
+    boolean remove(data element) throws Underflow;
 
     /**Returns an element data from the BST such that data.compareTo(element) == 0;
      * if no such element exists, returns null.*/

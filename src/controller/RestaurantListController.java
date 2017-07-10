@@ -9,9 +9,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import views.ProfileDriver;
 import views.RestaurantListDriver;
+import java.io.IOException;
 
 public class RestaurantListController {
+
+    public static Restaurant row;
 
     @FXML
     private TextField searchKey;
@@ -39,16 +44,6 @@ public class RestaurantListController {
     // Reference to the main application.
     private RestaurantListDriver restaurantApp;
 
-    /*public RestaurantListController() {
-        searchKey.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ENTER)) {
-                    System.out.println(searchKey.getText());
-                }
-            }
-        });
-    }*/
     /** Initializes the controller class. This method is automatically called after the fxml file has been loaded */
     @FXML
     private void initialize() {
@@ -76,43 +71,65 @@ public class RestaurantListController {
         String latitude = "";
         String longitude = "";
         String key = "";
-        boolean coordinate = true;
+        boolean coordinate = false;
+        boolean state = false;
+        boolean name = false;
         Restaurant restaurantKey;
         ObservableList<Restaurant> searchRestaurantResultTable = FXCollections.observableArrayList();
 
         if (event.getCode() == KeyCode.ENTER) {
             key = searchKey.getText();
-            //first add logic to check if key is coordinate or others
+
+            // Check if text entered is a coordinate by looking for ','
+            if (key.indexOf(',') >= 0) {
+                coordinate = true;
+                name = false;
+                state = false;
+            }
+
             //if key is empty
             if (key.equals("")) {
                 restaurantTable.setItems(restaurantApp.getRestaurantData());
             }
+
             //if coordinate
             if (coordinate) {
-                latitude = key.split(",")[0];
-                longitude = key.split(",")[1];
+                latitude = key.split(", ")[0]; // example 1: 38.340889,-90.399952
+                longitude = key.split(", ")[1]; // example 2: 38.7517314, -77.4727505
                 System.out.println(latitude + " " + longitude);
                 restaurantKey = new Restaurant(latitude, longitude);
                 if (restaurantApp.getRestaurantBSTree().contains(restaurantKey)) {
                     //create the new observable list and add the result to this list
                     searchRestaurantResultTable.add(restaurantApp.getRestaurantBSTree().get(restaurantKey));
                     //set new result of search to observrable list
-                    // hospitalApp.setHospitalData(searchHospitalResultTable);
                     //update view
                     restaurantTable.setItems(searchRestaurantResultTable);
                 } else {
                     //reset the observable list
                     searchRestaurantResultTable.clear();
                     //set new result of search to observrable list
-                    //hospitalApp.setHospitalData(searchHospitalResultTable);
                     //update view
                     restaurantTable.setItems(searchRestaurantResultTable);
                 }
             }
-            //if hospital name
-            //if phone number
-            //if address
 
+            // Can't figure out how to do .contains() with just a string
+        }
+    }
+
+    @FXML
+    private void handleRowSelect(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            row = restaurantTable.getSelectionModel().getSelectedItem();
+            if (row == null) return;
+            if (row != null) {
+                System.out.println(row.toString());
+                try {
+                    new ProfileDriver();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
